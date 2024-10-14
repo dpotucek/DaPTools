@@ -71,7 +71,7 @@ def processConvert(values):
     f = open(__outFile, 'w')
     for row in values:
         outRow = []
-        from misc.myTools import convertIn2Mm
+        from myTools import convertIn2Mm
         for strVal in row:
             val = str(convertIn2Mm(strVal))
             outRow.append(val)
