@@ -47,7 +47,7 @@ def vypoctiPocetDer(deleni, ratio=__RATIO):
         else:
             prubezne += 1
         if prubezne > 150:
-            print("too much holes, aborting")
+            print("too many holes, aborting")
             prubezne = 0
             break
     return prubezne
