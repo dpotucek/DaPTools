@@ -64,18 +64,18 @@ import sys
 
 
 class velikonoce:
-    def validateBrezen(self, brezen):
+    def validate_brezen(self, brezen):
         """ ovÄÅÃ­, ze breznove datum je v mezich mesice """
         if (brezen > 0) & (brezen <= 31):
             return True
         else:
             return False
 
-    def getDayMonth(self, t):  # (d, e, rok)
+    def get_day_month(self, t):  # (d, e, rok)
         """ vrati datum velikonocni nedele, t je tuple """
         brezen = 22 + t[0] + t[1]
         duben = t[0] + t[1] - 9
-        if self.validateBrezen(brezen):
+        if self.validate_brezen(brezen):
             return (t[2], 3, brezen)
         else:
             return (t[2], 4, duben)
@@ -100,14 +100,14 @@ class velikonoce:
         e = (n + 2 * b + 4 * c + 6 * d) % 7
         return (d, e, rok)
 
-    def getVelikonoce(self, rok):
-        return self.getDayMonth(self.coefficients(rok))
+    def get_velikonoce(self, r):
+        return self.get_day_month(self.coefficients(r))
 
 
 if __name__ == "__main__":
     rok = int(input(u"Výpočet velikonoc, zadej rok: "))
     vel = velikonoce()
-    datum = vel.getVelikonoce(rok)
+    datum = vel.get_velikonoce(rok)
     print('velka noc je: {}'.format(datum))
     print("(format rrrr, mm, dd)")
 

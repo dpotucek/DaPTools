@@ -39,52 +39,51 @@ def fibonacci(pocet):
     yield predchozi
     dalsi = 1
     yield dalsi
-    for i in range(2, pocet):
+    for _ in range(2, pocet):
         predchozi, dalsi = dalsi, predchozi + dalsi
         yield dalsi
 
 
-def __testFibonacci():
+def __test_fibonacci():
     for number in fibonacci(10):
         print(number)
 
 
-def gravityBetweenBodies(m1, m2, distance):
+def gravity_between_bodies(m1, m2, distance):
     """returns gravity force between body1 and body2 at given distance.
     m1 = mass of body 1, m2 = mass of body 2, distance is distence between bodies."""
     return (GRAV_CONST * (m1 * m2) / (distance ** 2))
 
 
-def __test_gravityBetweenBodies():
-    power = gravityBetweenBodies(M_Earth, M_Sun, AU)
+def __test_gravity_between_bodies():
+    power = gravity_between_bodies(M_Earth, M_Sun, AU)
     print("gravity between sun and earth in 1 AU is {0} N".format(power))
 
 
-def C2F(celsius):
+def c2f(celsius):
     """converts celsius to fahrenheit temperature"""
     return (celsius * 9 / 5) + 32
 
 
-def F2C(fahrenheit):
+def f2c(fahrenheit):
     """converts fahrenheit to celsius temperature """
     return (fahrenheit - 32) * 5 / 9
 
-def K2C(temp):
+def k2c(temp):
     """Prepocte Kelvina na Celsia."""
     return temp - KELVIN2C
 
-def C2K(temp):
+def c2k(temp):
     """Prepocte Celsia na Kelvina."""
     return temp + KELVIN2C
 
 def degree2decimal(deg, min, sec, direction):
     """Bere koordinaty ve stupnich, minutach, sekundach a smeru a vraci cislo.
     Negativni koordinaty jsou zapad a jih."""
-    decDeg = float(deg) + float(min)/60 + float(sec)/(60**2)
-    if direction:
-        if direction == 'W' or direction == 'S':
-            decDeg *= -1
-    return decDeg
+    dec_deg = float(deg) + float(min)/60 + float(sec)/(60**2)
+    if direction == 'W' or direction == 'S':
+        dec_deg *= -1
+    return dec_deg
 
 def decimal2degree(decimal):
     """bere stupne jako cislo a prevadi z 50.319348 do notace 50°19'9.652".
@@ -109,4 +108,4 @@ def deg2rad(uhel):
 if __name__ == '__main__':
     #     __testFibonacci()
     #     __testTemperatureConversion()
-    __test_gravityBetweenBodies()
+    __test_gravity_between_bodies()

@@ -8,18 +8,15 @@ Created on 18/05/2017, 14:29
 '''
 
 
-class DataLoger():
+class DataLoger:
 
     def __init__(self, file):
         self.soubor = file
 
-    def writeEvent(self, event):
+    def write_event(self, event):
         with open(self.soubor, mode="a", encoding="utf8") as fileHandler:
             fileHandler.write(event + '\n')
         fileHandler.close()
-        return
-
-
 
 if __name__ == "__main__":
     f = '/Users/david/temp/logger.txt'      # example usage
@@ -30,7 +27,7 @@ if __name__ == "__main__":
     counter = 1
     while counter <=10:
         event = now + ' ' + muster + str(counter)
-        loger.writeEvent(event)
+        loger.write_event(event)
         print('zapsano do souboru, counter = {}.'.format(counter))
         counter += 1
         time.sleep(1)

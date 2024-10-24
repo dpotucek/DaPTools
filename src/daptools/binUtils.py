@@ -7,14 +7,14 @@ Created on 23.2.2012
 '''
 
 
-def bytes2bin(rawBytes, sz=8):
+def bytes2bin(raw_bytes, sz=8):
     """Accepts a string of bytes (chars) and returns an array of bits representing
     the bytes in big endian byte (Most significant byte/bit first) order.  Each byte
     can have it's higher bits ignored by passing a sz."""
     if sz < 1 or sz > 8:
         raise ValueError("Invalid sz value: " + str(sz))
-    retVal = []
-    for b in rawBytes:
+    ret_val = []
+    for b in raw_bytes:
         bits = []
         b = ord(b)
         while b > 0:
@@ -27,11 +27,11 @@ def bytes2bin(rawBytes, sz=8):
             bits = bits[:sz]
 
         bits.reverse()  # Big endian byte order.
-        retVal.extend(bits)
+        ret_val.extend(bits)
 
-    if len(retVal) == 0:
-        retVal = [0]
-    return retVal
+    if len(ret_val) == 0:
+        ret_val = [0]
+    return ret_val
 
 
 def bin2bytes(x):
@@ -77,25 +77,25 @@ def bin2dec(x):
     return value
 
 
-def bytes2dec(rawBytes, sz=8):
-    return bin2dec(bytes2bin(rawBytes, sz))
+def bytes2dec(raw_bytes, sz=8):
+    return bin2dec(bytes2bin(raw_bytes, sz))
 
 
 def dec2bin(n, p=0):
     """Convert a decimal value to an array of bits (MSB first), optionally padding
     the overall size to p bits. """
     assert (n >= 0)
-    retVal = []
+    ret_val = []
 
     while n > 0:
-        retVal.append(n & 1)
+        ret_val.append(n & 1)
         n >>= 1
 
     if p > 0:
-        retVal.extend([0] * (p - len(retVal)))
-        retVal.reverse()
+        ret_val.extend([0] * (p - len(ret_val)))
+        ret_val.reverse()
 
-    return retVal
+    return ret_val
 
 
 def dec2bytes(n, p=0):
@@ -123,8 +123,8 @@ def bin2synchsafe(x):
     return bits
 
 
-def bytes2str(rawBytes):
+def bytes2str(raw_bytes):
     s = ""
-    for b in rawBytes:
+    for b in raw_bytes:
         s += ("\\x%02x" % ord(b))
     return s

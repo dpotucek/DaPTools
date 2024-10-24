@@ -32,7 +32,7 @@ ETAZERO = 1.4607E-5     # kinetic viscosity at sea-level,
 KAPPA_ZERO = 0.025326   # thermal coeff. at sea-level [watts per meter per kelvin]
 
 
-def simpleAtm(alt):
+def simple_atm(alt):
     '''Prijme vysku v metrech a vrati hustotu[kg/m^3], tlak[hPa] a teplotu[C] do 11km.
     :param alt [m]
     :return hustota, tlak, teplota
@@ -47,23 +47,22 @@ def simpleAtm(alt):
         from mathPhys import KELVIN2C
         tepl = 15 - 0.0065 * alt
         temp = (1 - alt/44308)
-        tlk = 1013.25 * pow(temp, 5.2553)
-        hust = 1.225 * pow(temp, 4.2553)
-        soundSpeed = 20.05 * math.sqrt(tepl + KELVIN2C)
-    return hust, tlk, tepl, soundSpeed
+        tlkx = 1013.25 * pow(temp, 5.2553)
+        hustx = 1.225 * pow(temp, 4.2553)
+        sound_speed = 20.05 * math.sqrt(tepl + KELVIN2C)
+    return hustx, tlkx, tepl, sound_speed
 
 
-def printValues(a, t, tl, h, spd):
+def print_values(a, t, tl, h, s):
     print('vyska nastavena na {} m'.format(a))
     print('v této výšce jsou parametry standardní atmosféry:')
     print('teplota: {} [C]'.format(t))
     print('tlak: {:0.2f} [hPa]'.format(tl))
     print('hustota: {:0.4f} [kg/m^3]'.format(h))
-    print('rychlost zvuku: {:0.4f} [m/s]'.format(spd))
+    print('rychlost zvuku: {:0.4f} [m/s]'.format(s))
 
 
 if __name__ == "__main__":
-    # alt = numUsrIn('zadej vysku [km]', 3)
     alt = 500
-    hust, tlk, tplt, spd = simpleAtm(alt)
-    printValues(alt, tplt, tlk, hust, spd)
+    hust, tlk, tplt, spd = simple_atm(alt)
+    print_values(alt, tplt, tlk, hust, spd)

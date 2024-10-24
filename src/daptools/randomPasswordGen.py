@@ -15,10 +15,10 @@ __LEN__ = 16
 __MIX__ = '012'
 
 
-def generatePaaswd(length):
+def generate_paswd(length):
     mix = 0
     password = ""
-    for i in range(length + 1):
+    for _ in range(length + 1):
         if mix == '0':
             password += random.choice(__CHAR__)
         if mix == '1':
@@ -32,8 +32,8 @@ def generatePaaswd(length):
 if __name__ == "__main__":
     password = ""
     key = input('pro passwd zmackni neco, pro konec zmackni q\n')
-    while (key != 'q'):
-        password = generatePaaswd(__LEN__)
+    while key != 'q':
+        password = generate_paswd(__LEN__)
         print(password)
         password = ''
         key = input('pro passwd zmackni neco, pro konec zmackni q')

@@ -7,7 +7,7 @@ Created on 19/10/2017, 08:47
 @author: David Potucek
 '''
 
-def generateTableRow(*args):
+def generate_table_row(*args):
     """Accepts arguments, makes them string and composes one row of LaTeX table."""
     row = []
     for arg in args:
@@ -20,5 +20,5 @@ def generateTableRow(*args):
 
 
 if __name__ == "__main__":
-    vys = generateTableRow('prvni', 'druhy', 'treti', 'ctvrty')
+    vys = generate_table_row('prvni', 'druhy', 'treti', 'ctvrty')
     print(vys)

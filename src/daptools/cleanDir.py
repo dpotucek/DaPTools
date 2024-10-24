@@ -12,19 +12,18 @@ Created on 18/05/2017, 13:14
 
 import os
 
-from myTools import treeWalker, getFileExtension
+from myTools import tree_walker, get_file_extension
 
 __koncovky__ = ('aux', 'log', 'gz')
 
 __path__ = '/Users/david/Documents/work/O2/administrativa/TimeSheets/2018/'   #akceptaky
-# __path__ = '/Users/david/Documents/work/O2/administrativa/nabidky/'     # nabidky
 
 
-def filterFiles(soubory):
+def filter_files(soubory):
     output = []
     for name in soubory:
         for extension in __koncovky__:
-            m, ext = getFileExtension(name)
+            _, ext = get_file_extension(name)
             if extension == ext:
                 output.append(name)
                 break
@@ -32,13 +31,10 @@ def filterFiles(soubory):
 
 
 if __name__ == "__main__":
-    # os.chdir(os.path.dirname(__file__))   # zmena working dir na tu ze ktere jsme to spustili.
-    # cesta = os.getcwd()
-    # cesta = '/Users/david/temp'
     cesta = __path__
     print(cesta)
-    files = treeWalker(cesta, False)
-    keSmazani = filterFiles(files)
+    files = tree_walker(cesta, False)
+    keSmazani = filter_files(files)
     print(keSmazani)
     for soubor in keSmazani:
         os.remove(soubor)
