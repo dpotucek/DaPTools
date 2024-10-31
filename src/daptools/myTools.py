@@ -1,16 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-'''
+"""
 Library of useful tools.
 
 Created on Aug 19, 2010
 
 @author: David Potucek
-'''
+"""
 
 
 def contains(data, pattern, case_sensitive = False):
-    """ returns count of string patterns found in string data. Not case sensitive by default."""
+    """ returns count of string patterns found in string data. Not case-sensitive by default."""
     if case_sensitive:
         return data.count(pattern)  # de facto duplikace standardniho count, zvazit jestli nechat
     else:
@@ -119,7 +119,7 @@ def get_file_extension(soubor):
     return name, extension
 
 def __test_strip_czech_chars():
-    line = "Å½luÅ¥ouÄkÃ½ kÅ¯Å pÄl ÄÃ¡belskÃ© Ã³dy"
+    line = "Příliš žluťoučký kůň úpěl ďábelské ódy"
     print("before stripping: " + line)
     print("after stripping: " + strip_czech_chars(line))
 
@@ -186,24 +186,23 @@ def str_enum_usr_in(prompt, enum, default):
         print('incorrect value, using {}!'.format(default))
         return default
 
-def rename_files(dict):
-    '''renames files defined in dictionary. key = old name, value = new name. Expects full 
+def rename_files(soubory):
+    """renames files defined in dictionary. key = old name, value = new name. Expects full
     paths in both filenames.
     :param: dict    dictionary of file names to rename
     :return null
-    '''
+    """
     import shutil
-    for old, new in dict.items():
+    for old, new in soubory.items():
         shutil.move(old, new)
 
 def prepare_counter(number, places=3):
-    '''pripravi counter v pevnem cislovani.
+    """pripravi counter v pevnem cislovani.
     :param number, pocet mist
-    :return cislo doplnene z leva nulami na pozadovany pocet mist. Default = 3.'''
+    :param places, kolik mist ma mit cislo. Default 3
+    :return cislo doplnene z leva nulami na pozadovany pocet mist. Default = 3."""
     form = '{:0' + str(places) + 'd}'   #  priprava formatovaciho stringu
     return form.format(number)
-
-
 
 if __name__ == "__main__":
     # print(deg2rad(23))
