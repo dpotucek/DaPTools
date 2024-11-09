@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "daptools"
-version = "1.0"
+version = "1.1"
 description = ""
 authors = ["David Potucek <davidpotucek@protonmail.ch>"]
 readme = "README.md"
