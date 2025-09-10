@@ -82,6 +82,13 @@ poetry build
 poetry version patch  # or minor, major
 ```
 
+## GUI Integration
+DaPTools is integrated into the **strojarina** project with web GUI:
+```bash
+# In strojarina project
+make web  # Starts web interface using DaPTools
+```
+
 ## Test Coverage
 - 15 comprehensive unit tests
 - 11/15 tests fully functional
