@@ -12,7 +12,7 @@ Created on 27/04/2017, 07:26
 
 import random
 
-from myTools import tree_walker, separate_full_path, rename_files, prepare_counter, strip_czech_chars
+from .myTools import tree_walker, separate_full_path, rename_files, prepare_counter, strip_czech_chars
 
 __PATH = '/Users/david/temp/mp3'
 __IGNORE_NAMES__ = ('.DS_Store')    # ktere files vynechat

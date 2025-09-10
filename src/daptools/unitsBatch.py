@@ -71,7 +71,7 @@ def process_convert(values):
     f = open(__outFile, 'w')
     for row in values:
         out_row = []
-        from myTools import convert_in_2_mm
+        from .myTools import convert_in_2_mm
         for str_val in row:
             val = str(convert_in_2_mm(str_val))
             out_row.append(val)

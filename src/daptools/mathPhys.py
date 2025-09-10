@@ -44,20 +44,12 @@ def fibonacci(pocet):
         yield dalsi
 
 
-def __test_fibonacci():
-    for number in fibonacci(10):
-        print(number)
-
 
 def gravity_between_bodies(m1, m2, distance):
     """returns gravity force between body1 and body2 at given distance.
     m1 = mass of body 1, m2 = mass of body 2, distance is distence between bodies."""
     return (GRAV_CONST * (m1 * m2) / (distance ** 2))
 
-
-def __test_gravity_between_bodies():
-    power = gravity_between_bodies(M_Earth, M_Sun, AU)
-    print("gravity between sun and earth in 1 AU is {0} N".format(power))
 
 
 def c2f(celsius):
@@ -106,6 +98,4 @@ def deg2rad(uhel):
     return uhel * math.pi / 180
 
 if __name__ == '__main__':
-    #     __testFibonacci()
-    #     __testTemperatureConversion()
-    __test_gravity_between_bodies()
+    pass

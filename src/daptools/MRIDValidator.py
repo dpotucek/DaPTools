@@ -44,7 +44,7 @@ class MRIDValidator:
         """
         Comprehensive validation with detailed results.
 
-        Args:
+        Args:k
             mrid: String to validate as mRID
 
         Returns:

@@ -19,14 +19,6 @@ def parse_coordinates(coordinate):
     coord = mathPhys.degree2decimal(parts[0], parts[1], parts[2], parts[3])
     return coord
 
-def __test_parse_coordinates():
-    from mathPhys import decimal2degree
-    # print('prevadim {}'.format("""50°19'9.652"E"""))
-    print('prevadim {}'.format("""50°19'9.652"E"""))
-    c = parse_coordinates("""50°19'9.652"E""")
-    print('vysledek je {}'.format(c))
-    d = decimal2degree(c)
-    print('a nazpet: {}'.format(d))
 
 def format_degrees_tuple(degrees, kategorie ='NA'):
     """posles tuple stupne, minuty, sekundy a optional kategorie(lat, lon, NA), vrati string
@@ -153,15 +145,6 @@ class GreatCircleTrackSpherical:
                    format_degrees_tuple(mathPhys.decimal2degree(temp[1])),
                    stredobod[0], stredobod[1]))
 
-def __test_great_circle_track():
-
-    track = GreatCircleTrackSpherical(parse_coordinates("""50°00'00"N"""),
-                                      parse_coordinates("""05°00'00"W"""),
-                                      parse_coordinates("""51°00'00"N"""),
-                                      parse_coordinates("""10°00'00"E"""))
-    print(track)
-
 
 if __name__ == '__main__':
-        __test_parse_coordinates()
-    # __testGreatCircleTrack()
+    pass

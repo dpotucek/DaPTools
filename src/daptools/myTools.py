@@ -19,14 +19,6 @@ def contains(data, pattern, case_sensitive = False):
         return data.count(pattern)
 
 
-def __test_contains():
-    name = "pAko"
-    data = " super velky PAKO jako prako pAko pako PAKO"
-    print("py string: " + data + "\nhledany retezec: " + name)
-    print("not case sensitive: ", contains(data, name))  # testovani moji metodou
-    print('case sensitive: {}'.format(contains(data, name, True)))
-    print("case sensitive builtin: {}".format(data.count(name)))  # testovani pres built in metodu
-
 
 def tree_walker(root, recursive=True):
     """
@@ -46,13 +38,6 @@ def tree_walker(root, recursive=True):
     return tuple(files)
 
 
-def __test_tree_walker():
-    path = '/home/david/Documents/versioned/pokusy'
-    ll = tree_walker(path)
-    for el in ll:
-        filename = el.name
-        print(filename)
-
 
 def separate_full_path(full_path):
     """ Gets full path string, returns tuple of path and filename. Separates string
@@ -61,13 +46,8 @@ def separate_full_path(full_path):
     index += 1
     path = full_path[:index]
     file_name = full_path[index:]
-    return tuple([path, file_name])
+    return [path, file_name]
 
-
-def __test_separate_full_path():
-    full_path = '/home/david/workspace/python/experiments/src/fileTools.py'
-    print(full_path)
-    print(separate_full_path(full_path))
 
 
 def strip_extension(full_path, rename = True):
@@ -92,11 +72,6 @@ def strip_extension(full_path, rename = True):
     return new_path
 
 
-def __test_strip_extension():
-    path = "/home/david/temp/py/tohle.je.testovaci.file.txt"
-    strip_extension(path)
-    print("py done")
-
 
 def strip_czech_chars(czech_string):
     """Recodes Czech characters to ASCII together with special ones."""
@@ -118,10 +93,7 @@ def get_file_extension(soubor):
     extension = soubor[index+1:]
     return name, extension
 
-def __test_strip_czech_chars():
-    line = "Příliš žluťoučký kůň úpěl ďábelské ódy"
-    print("before stripping: " + line)
-    print("after stripping: " + strip_czech_chars(line))
+
 
 def convert_in_2_mm(value):
     """ converts inch value to milimeter (1 in = 25,4 mm)"""
@@ -205,11 +177,4 @@ def prepare_counter(number, places=3):
     return form.format(number)
 
 if __name__ == "__main__":
-    # print(deg2rad(23))
-        __test_contains()
-    #    __testTreeWalker()
-    #    __testSeparateFullPath()
-    #    __testStripExtension()
-    # __testStripCzechChars()
-    # x = numUsrIn('zadej cislo', 42)
-    # x = strEnumUsrIn("zadej neco ze seznamu", ('a', 'b'), 'a')
+    pass

@@ -12,7 +12,7 @@ Created on 18/05/2017, 13:14
 
 import os
 
-from myTools import tree_walker, get_file_extension
+from .myTools import tree_walker, get_file_extension
 
 __koncovky__ = ('aux', 'log', 'gz')
 
