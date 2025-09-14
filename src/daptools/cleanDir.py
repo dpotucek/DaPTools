@@ -22,11 +22,9 @@ __path__ = '/Users/david/Documents/work/O2/administrativa/TimeSheets/2018/'   #a
 def filter_files(soubory):
     output = []
     for name in soubory:
-        for extension in __koncovky__:
-            _, ext = get_file_extension(name)
-            if extension == ext:
-                output.append(name)
-                break
+        _, ext = get_file_extension(name)  # Extract extension once
+        if ext in __koncovky__:
+            output.append(name)
     return output
 
 
@@ -37,6 +35,9 @@ if __name__ == "__main__":
     keSmazani = filter_files(files)
     print(keSmazani)
     for soubor in keSmazani:
-        os.remove(soubor)
+        try:
+            os.remove(soubor)
+        except (OSError, FileNotFoundError) as e:
+            print(f"Failed to remove {soubor}: {e}")
     print('{} files removed'.format(len(keSmazani)))
 

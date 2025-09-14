@@ -89,8 +89,7 @@ class GreatCircleTrackSpherical:
         a = (math.sin(self.delta_lat / 2)) ** 2 + math.cos(self.lat1r) * math.cos(self.lat2r) \
             * (math.sin(self.delta_lon / 2)) ** 2
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        d = EARTH_RADIUS_KM * 1000 * c
-        return d/1000
+        return EARTH_RADIUS_KM * c  # Direct calculation without redundant operations
 
     def get_bearings(self):          # TODO nechodi, opravit!!
         init_bearing = self.__initial_bearing(self.lat1r, self.lat2r, self.delta_lon)

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 u""" vypocita datum velikonoc v obdobi 1900 - 2099.
 
 Pouziti:

@@ -57,9 +57,7 @@ def bin2bytes(x):
     if multi > 1:
         out += chr(ttl)
 
-    out = list(out)
-    out.reverse()
-    out = ''.join(out)
+    out = out[::-1]  # More efficient string reversal
     return out
 
 
