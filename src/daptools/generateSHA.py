@@ -10,13 +10,13 @@ Created on 24/02/2021, 07:26
 import sys, hashlib
 from collections import OrderedDict as od
 
-SHA_TYPES = ['sha224sum', 'sha256sum', 'sha384sum', 'sha512sum']  # Removed insecure md5 and sha1
+SHA_TYPES = ['md5sum', 'sha1sum', 'sha224sum', 'sha256sum', 'sha384sum', 'sha512sum']
 
 def get_hashsums(file_path):
     """Vypocte hash vsech typu pro dany file."""
     hash_sums = od()
-    hash_sums['sha256sum_alt'] = hashlib.sha256()
-    hash_sums['sha512sum_alt'] = hashlib.sha512()
+    hash_sums['md5sum'] = hashlib.md5()
+    hash_sums['sha1sum'] = hashlib.sha1()
     hash_sums['sha224sum'] = hashlib.sha224()
     hash_sums['sha256sum'] = hashlib.sha256()
     hash_sums['sha384sum'] = hashlib.sha384()
@@ -35,8 +35,8 @@ def get_hashsums(file_path):
 
 def create_hash(file, type="sha256sum"):
     """Vytvori podle typu hash objekt a napocita hash. Default type je sha256."""
-    if (type == 'sha256sum_alt'): hash_sum = hashlib.sha256()  # secure alternative
-    elif (type == 'sha512sum_alt'): hash_sum = hashlib.sha512()  # secure alternative
+    if (type == 'md5sum'): hash_sum = hashlib.md5()
+    elif (type == 'sha1sum'): hash_sum = hashlib.sha1()
     elif (type == 'sha224sum'): hash_sum = hashlib.sha224()
     elif (type == 'sha256sum'): hash_sum = hashlib.sha256()
     elif (type == 'sha384sum'): hash_sum = hashlib.sha384()
