@@ -9,14 +9,12 @@ Created on Aug 19, 2010
 """
 
 
-def contains(data, pattern, case_sensitive = False):
+def contains(data, pattern, case_sensitive=False):
     """ returns count of string patterns found in string data. Not case-sensitive by default."""
-    if case_sensitive:
-        return data.count(pattern)  # de facto duplikace standardniho count, zvazit jestli nechat
-    else:
+    if not case_sensitive:
         data = data.lower()
         pattern = pattern.lower()
-        return data.count(pattern)
+    return data.count(pattern)
 
 
 
@@ -42,11 +40,9 @@ def tree_walker(root, recursive=True):
 def separate_full_path(full_path):
     """ Gets full path string, returns tuple of path and filename. Separates string
     after last /, names it filename. The rest is path. Handles no errors. """
-    index = full_path.rfind('/')
-    index += 1
-    path = full_path[:index]
-    file_name = full_path[index:]
-    return [path, file_name]
+    import os
+    path, filename = os.path.split(full_path)
+    return [path + '/' if path and not path.endswith('/') else path, filename]
 
 
 
@@ -87,10 +83,11 @@ def get_file_extension(soubor):
     """returns extension of the file if it has some"""
     try:
         index = soubor.rindex('.')
+        name = soubor[:index]
+        extension = soubor[index+1:]
     except ValueError:
-        index = 0
-    name = soubor[:index]
-    extension = soubor[index+1:]
+        name = ""
+        extension = soubor[1:] if soubor else ""
     return name, extension
 
 

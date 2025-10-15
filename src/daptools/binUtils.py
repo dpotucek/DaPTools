@@ -36,43 +36,20 @@ def bytes2bin(raw_bytes, sz=8):
 
 def bin2bytes(x):
     """Convert an array of bits (MSB first) into a string of characters."""
-    bits = []
-    bits.extend(x)
-    bits.reverse()
-
-    i = 0
-    out = ''
-    multi = 1
-    ttl = 0
-    for b in bits:
-        i += 1
-        ttl += b * multi
-        multi *= 2
-        if i == 8:
-            i = 0
-            out += chr(ttl)
-            multi = 1
-            ttl = 0
-
-    if multi > 1:
-        out += chr(ttl)
-
-    out = out[::-1]  # More efficient string reversal
-    return out
+    bits = list(reversed(x))
+    out = []
+    
+    for i in range(0, len(bits), 8):
+        byte_bits = bits[i:i+8]
+        ttl = sum(b * (2 ** j) for j, b in enumerate(byte_bits))
+        out.append(chr(ttl))
+    
+    return ''.join(reversed(out))
 
 
 def bin2dec(x):
     """Convert an array of "bits" (MSB first) to it's decimal value."""
-    bits = []
-    bits.extend(x)
-    bits.reverse()
-
-    multi = 1
-    value = 0
-    for b in bits:
-        value += b * multi
-        multi *= 2
-    return value
+    return sum(b * (2 ** i) for i, b in enumerate(reversed(x)))
 
 
 def bytes2dec(raw_bytes, sz=8):
@@ -82,18 +59,19 @@ def bytes2dec(raw_bytes, sz=8):
 def dec2bin(n, p=0):
     """Convert a decimal value to an array of bits (MSB first), optionally padding
     the overall size to p bits. """
-    assert (n >= 0)
+    assert n >= 0
+    if n == 0:
+        return [0] * max(1, p)
+    
     ret_val = []
-
     while n > 0:
         ret_val.append(n & 1)
         n >>= 1
-
-    if p > 0:
+    
+    if p > 0 and len(ret_val) < p:
         ret_val.extend([0] * (p - len(ret_val)))
-        ret_val.reverse()
-
-    return ret_val
+    
+    return list(reversed(ret_val))
 
 
 def dec2bytes(n, p=0):

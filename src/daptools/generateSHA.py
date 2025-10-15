@@ -35,14 +35,19 @@ def get_hashsums(file_path):
 
 def create_hash(file, type="sha256sum"):
     """Vytvori podle typu hash objekt a napocita hash. Default type je sha256."""
-    if (type == 'md5sum'): hash_sum = hashlib.md5()
-    elif (type == 'sha1sum'): hash_sum = hashlib.sha1()
-    elif (type == 'sha224sum'): hash_sum = hashlib.sha224()
-    elif (type == 'sha256sum'): hash_sum = hashlib.sha256()
-    elif (type == 'sha384sum'): hash_sum = hashlib.sha384()
-    elif (type == 'sha512sum'): hash_sum = hashlib.sha512()
-    else:
+    hash_map = {
+        'md5sum': hashlib.md5,
+        'sha1sum': hashlib.sha1,
+        'sha224sum': hashlib.sha224,
+        'sha256sum': hashlib.sha256,
+        'sha384sum': hashlib.sha384,
+        'sha512sum': hashlib.sha512
+    }
+    
+    if type not in hash_map:
         raise ValueError('neplatny typ hashe')
+    
+    hash_sum = hash_map[type]()
 
     with open(file, 'rb') as fh:            # projedeme file a vyrobime spravny hash
         data_chunk = fh.read(1024)
@@ -60,33 +65,6 @@ def validate_file (file, signature, typex="sha256sum"):
     if (dig == signature): return True, hashx, typex
     else:
         return False, hashx, typex
-
-def test_hash():
-    print('test default (sha256sum) hashe')
-    for path in sys.argv[1:]:
-        print(">>> ", path)
-        for key, value in get_hashsums(path).items():
-            print(key, value)
-    fname = sys.argv[0]
-    h, t = create_hash(fname)
-    print('------------------------------------------------------')
-    print('file = {}'.format(fname))
-    print('hash typu {} je: {}'.format(t, h.hexdigest()))
-    nesmysl = 'c94c8b81ef67bc6ff2028e160d707937af9047b084173e76246e01913da65105'
-    spravny, _ = create_hash(fname)
-    vysl, h_vyp, _ = validate_file(fname, nesmysl)
-
-    print('------ chybovy stav, vysledek musi byt False ------')
-    print('vypocteny hash = {}'.format(h_vyp.hexdigest()))
-    print('dodany spatny hash = {}'.format(nesmysl))
-    print('vyledek = {}'.format(vysl))
-
-    vysl, h_vyp, _ = validate_file(fname, spravny.hexdigest())
-    print('------ spravny stav, vysledek musi byt True ------')
-    print('vypocteny hash = {}'.format(h_vyp.hexdigest()))
-    print('dodany auto hash = {}'.format(spravny.hexdigest()))
-    print('vyledek = {}'.format(vysl))
-
 
 def prepare_arguments():
     '''Nacte arguemnty a bud vrati jeden,dva, nebo tri. Pokud jich je jine mnozstvi, hodi exception.
@@ -117,7 +95,6 @@ def prepare_arguments():
                          .format(len(lst)))
 
 if __name__ == "__main__":
-    # testHash()    # testovaci rutina, pocita hash na svem file
     args = prepare_arguments()
     if len(args) == 1:              # chci vygenerovat sha256sum hash pro zadany file
         aaa, typ = create_hash(args[0])
